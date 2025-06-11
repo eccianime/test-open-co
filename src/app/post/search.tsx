@@ -1,19 +1,21 @@
+import EmptyList from '@/src/components/EmptyList';
 import Header from '@/src/components/Header';
 import Loader from '@/src/components/Loader';
 import PostList from '@/src/components/PostList';
-import colors from '@/src/constants/colors';
+import useDebounce from '@/src/hook/useDebounce';
 import { useLazyGetPostsQuery } from '@/src/redux/api/postsApi';
 import { Post } from '@/src/types';
-import { SimpleLineIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useMemo, useState } from 'react';
-import { Text, TextInput, View } from 'react-native';
+import { TextInput, View } from 'react-native';
 
 export default function Search() {
   const [searchText, setSearchText] = useState('');
   const [posts, setPosts] = useState<Post[]>([]);
 
   const [getPosts, { isLoading }] = useLazyGetPostsQuery();
+
+  const debouncedSearchText = useDebounce(searchText, 500);
 
   useEffect(() => {
     let posts: Post[] = [];
@@ -38,10 +40,10 @@ export default function Search() {
     if (!posts) return [];
     return posts.filter(
       (post) =>
-        post.title.toLowerCase().includes(searchText.toLowerCase()) ||
-        post.body.toLowerCase().includes(searchText.toLowerCase())
+        post.title.toLowerCase().includes(debouncedSearchText.toLowerCase()) ||
+        post.body.toLowerCase().includes(debouncedSearchText.toLowerCase())
     );
-  }, [posts, searchText]);
+  }, [posts, debouncedSearchText]);
 
   if (isLoading) {
     return <Loader />;
@@ -57,32 +59,17 @@ export default function Search() {
         className='border border-default-primary rounded-lg p-4 mx-6 font-poppins_medium mb-2'
       />
       <PostList
-        posts={searchText.length > 2 ? filteredPosts : []}
+        posts={debouncedSearchText.length > 2 ? filteredPosts : []}
         contentContainerClassName='flex-1'
         ListEmptyComponent={
           <View className='flex-1 items-center justify-center mx-6'>
-            {searchText.length > 2 ? (
-              <View className='flex-1 items-center justify-center gap-4'>
-                <SimpleLineIcons
-                  name='question'
-                  size={100}
-                  color={colors.primary}
-                />
-                <Text className='text-2xl text-center font-poppins_medium text-default-primary'>
-                  No posts found
-                </Text>
-              </View>
+            {debouncedSearchText.length > 2 ? (
+              <EmptyList text='No posts found' icon='question' />
             ) : (
-              <View className='flex-1 items-center justify-center gap-4'>
-                <SimpleLineIcons
-                  name='magnifier'
-                  size={100}
-                  color={colors.primary}
-                />
-                <Text className='text-2xl text-center font-poppins_medium text-default-primary'>
-                  Write at least 3 characters to start the search
-                </Text>
-              </View>
+              <EmptyList
+                text='Write at least 3 characters to start the search'
+                icon='magnifier'
+              />
             )}
           </View>
         }
