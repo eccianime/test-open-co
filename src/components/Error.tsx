@@ -10,7 +10,7 @@ export default function Error({ onPressRetry, text }: ErrorProps) {
       </Text>
       <TouchableOpacity
         onPress={onPressRetry}
-        className='mt-4 bg-primary  rounded-lg items-center justify-center flex-row gap-3 p-4'
+        className='mt-4 bg-default-primary  rounded-lg items-center justify-center flex-row gap-3 p-4'
       >
         <Ionicons
           name={text === 'Retry' ? 'refresh' : 'arrow-back'}

@@ -11,7 +11,7 @@ export default function PostListItem({ post, isComplete }: PostListItemProps) {
   return (
     <TouchableOpacity
       activeOpacity={isComplete ? 1 : 0.8}
-      className='bg-primary p-4 rounded-lg mx-6 mb-3'
+      className='bg-default-primary p-4 rounded-lg mx-6 mb-3'
       onPress={handlePress}
     >
       <Text className='text-white font-poppins_semibold mb-3'>

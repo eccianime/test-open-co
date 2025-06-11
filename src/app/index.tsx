@@ -20,7 +20,9 @@ export default function Splash() {
 
   useEffect(() => {
     if (fontsLoaded) {
-      router.replace('/post');
+      setTimeout(() => {
+        router.replace('/post');
+      }, 2000);
     }
   }, [fontsLoaded]);
 

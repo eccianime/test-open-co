@@ -1,5 +1,6 @@
+import Header from '@/src/components/Header';
 import React, { useEffect, useState } from 'react';
-import { Image, Text, View } from 'react-native';
+import { View } from 'react-native';
 import Error from '../../components/Error';
 import Loader from '../../components/Loader';
 import PostList from '../../components/PostList';
@@ -34,16 +35,9 @@ export default function PostsList() {
   if (isError) return <Error onPressRetry={handleRetry} text='Retry' />;
 
   return (
-    <View className='flex-1 '>
-      <View className='items-center mb-6'>
-        <Image
-          source={require('../../assets/images/icon.png')}
-          className='w-10 h-10 absolute top-0 left-6 rounded-lg'
-        />
-        <Text className='text-2xl text-primary font-poppins_bold  text-center'>
-          Posts List
-        </Text>
-      </View>
+    <View className='flex-1'>
+      <Header text='Posts List' />
+
       <PostList posts={posts} changePage={() => setPage((prev) => prev + 1)} />
     </View>
   );

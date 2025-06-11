@@ -44,7 +44,7 @@ export default function PostDetails() {
         >
           <Ionicons name='arrow-back' size={30} color='#036c39' />
         </TouchableOpacity>
-        <Text className='text-2xl text-primary font-poppins_bold  text-center'>
+        <Text className='text-2xl text-default-primary font-poppins_bold  text-center'>
           Post Details
         </Text>
       </View>

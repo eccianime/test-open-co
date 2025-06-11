@@ -31,3 +31,7 @@ export type ErrorProps = {
   text: string;
   onPressRetry: () => void;
 };
+
+export type HeaderProps = {
+  text: string;
+};

@@ -20,11 +20,11 @@ export default function TabLayout() {
               <Ionicons
                 name={children === 'index' ? 'list' : 'search'}
                 size={24}
-                color={focused ? colors.primary : colors.lime[500]}
+                color={focused ? colors.primary : colors.limeish}
               />
               <Text
                 className={`${
-                  focused ? 'text-primary' : 'text-lime-500'
+                  focused ? 'text-default-primary' : 'text-default-limeish'
                 } font-poppins_semibold`}
               >
                 {children === 'index' ? 'Posts' : 'Search'}
@@ -34,27 +34,7 @@ export default function TabLayout() {
         },
       }}
     >
-      <Tabs.Screen
-        name='index'
-        // options={{
-        //   tabBarButton: ({ focused }) => (
-        //     <View className='items-center justify-center py-2'>
-        //       <Ionicons
-        //         name='list'
-        //         size={24}
-        //         color={focused ? colors.secondary : colors.primary}
-        //       />
-        //       <Text
-        //         className={`${
-        //           focused ? 'text-secondary' : 'text-primary'
-        //         } font-poppins_semibold`}
-        //       >
-        //         Posts
-        //       </Text>
-        //     </View>
-        //   ),
-        // }}
-      />
+      <Tabs.Screen name='index' />
       <Tabs.Screen name='search' options={{ title: 'Search' }} />
       <Tabs.Screen name='[id]' options={{ href: null }} />
     </Tabs>
