@@ -19,12 +19,19 @@ export default function Index() {
 
   const loadMore = async () => {
     const result = await getPosts({ page, limit: LIMIT }).unwrap();
-    setPosts((prev) => [...prev, ...result]);
+    const newPostSet = new Set([...posts, ...result]);
+    setPosts(Array.from(newPostSet));
+  };
+
+  const handleRetry = () => {
+    setPosts([]);
+    setPage(0);
+    loadMore();
   };
 
   if (isLoading) return <Loader />;
 
-  if (isError) return <Error />;
+  if (isError) return <Error onPressRetry={handleRetry} text='Retry' />;
 
   return (
     <View className='flex-1 '>

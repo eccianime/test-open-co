@@ -26,3 +26,8 @@ export type Comment = {
 export type CommentListItemProps = {
   comment: Comment;
 };
+
+export type ErrorProps = {
+  text: string;
+  onPressRetry: () => void;
+};

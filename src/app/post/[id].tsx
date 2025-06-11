@@ -24,9 +24,14 @@ export default function PostDetails() {
     isError: isCommentsError,
   } = useGetPostCommentsQuery({ postId: Number(id) });
 
+  const handleRetry = () => {
+    router.back();
+  };
+
   if (isPostLoading || isCommentsLoading) return <Loader />;
 
-  if (isPostError || isCommentsError) return <Error />;
+  if (isPostError || isCommentsError)
+    return <Error onPressRetry={handleRetry} text='Go Back' />;
 
   if (!post || !comments) return <Loader />;
 

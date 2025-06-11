@@ -1,4 +1,4 @@
-import { Slot } from 'expo-router';
+import { Tabs } from 'expo-router';
 import { Provider } from 'react-redux';
 import '../../global.css';
 
@@ -9,7 +9,8 @@ import {
   Poppins_700Bold,
 } from '@expo-google-fonts/poppins';
 import { useFonts } from 'expo-font';
-import { SafeAreaView } from 'react-native';
+import { View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { store } from '../redux/store';
 
 export default function RootLayout() {
@@ -20,15 +21,28 @@ export default function RootLayout() {
     Poppins_700Bold,
   });
 
+  const { top } = useSafeAreaInsets();
+
   if (!fontsLoaded) {
     return null;
   }
 
   return (
-    <SafeAreaView className='flex-1'>
+    <View className='flex-1' style={{ paddingTop: top }}>
       <Provider store={store}>
-        <Slot screenOptions={{ headerShown: false }} />
+        <Tabs
+          screenOptions={{
+            headerShown: false,
+            sceneStyle: {
+              backgroundColor: 'white',
+            },
+          }}
+        >
+          <Tabs.Screen name='index' />
+          <Tabs.Screen name='search' />
+          <Tabs.Screen name='post/[id]' options={{ href: null }} />
+        </Tabs>
       </Provider>
-    </SafeAreaView>
+    </View>
   );
 }
