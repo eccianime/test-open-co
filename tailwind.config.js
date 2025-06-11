@@ -9,6 +9,12 @@ module.exports = {
         poppins_light: ['Poppins_300Light'],
         poppins_medium: ['Poppins_500Medium'],
         poppins_semibold: ['Poppins_600SemiBold'],
+        poppins_bold: ['Poppins_700Bold'],
+      },
+      colors: {
+        primary: '#036c39',
+        secondary: '#2fc94e',
+        background: '#74b882',
       },
     },
   },

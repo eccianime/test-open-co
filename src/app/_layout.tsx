@@ -1,4 +1,4 @@
-import { Stack } from 'expo-router';
+import { Slot } from 'expo-router';
 import { Provider } from 'react-redux';
 import '../../global.css';
 
@@ -6,8 +6,10 @@ import {
   Poppins_300Light,
   Poppins_500Medium,
   Poppins_600SemiBold,
+  Poppins_700Bold,
 } from '@expo-google-fonts/poppins';
 import { useFonts } from 'expo-font';
+import { SafeAreaView } from 'react-native';
 import { store } from '../redux/store';
 
 export default function RootLayout() {
@@ -15,6 +17,7 @@ export default function RootLayout() {
     Poppins_300Light,
     Poppins_500Medium,
     Poppins_600SemiBold,
+    Poppins_700Bold,
   });
 
   if (!fontsLoaded) {
@@ -22,8 +25,10 @@ export default function RootLayout() {
   }
 
   return (
-    <Provider store={store}>
-      <Stack />
-    </Provider>
+    <SafeAreaView className='flex-1 bg-background'>
+      <Provider store={store}>
+        <Slot screenOptions={{ headerShown: false }} />
+      </Provider>
+    </SafeAreaView>
   );
 }
