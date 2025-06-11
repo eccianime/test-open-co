@@ -12,4 +12,17 @@ export type PostListProps = {
 
 export type PostListItemProps = {
   post: Post;
+  isComplete?: boolean;
+};
+
+export type Comment = {
+  postId: number;
+  id: number;
+  name: string;
+  email: string;
+  body: string;
+};
+
+export type CommentListItemProps = {
+  comment: Comment;
 };

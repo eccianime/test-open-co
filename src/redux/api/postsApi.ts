@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Post } from '../../types';
+import { Comment, Post } from '../../types';
 
 export const postsApi = createApi({
   reducerPath: 'postsApi',
@@ -8,15 +8,25 @@ export const postsApi = createApi({
   }),
   endpoints: (builder) => ({
     getPosts: builder.query<Post[], { page: number; limit: number }>({
-      query: ({ page, limit }) => {
-        console.log(page, limit);
-
-        return {
-          url: `/posts?_start=${page * limit}&_limit=${limit}`,
-        };
-      },
+      query: ({ page, limit }) => ({
+        url: `/posts?_start=${page * limit}&_limit=${limit}`,
+      }),
+    }),
+    getSinglePost: builder.query<Post, { postId: number }>({
+      query: ({ postId }) => ({
+        url: `/posts/${postId}`,
+      }),
+    }),
+    getPostComments: builder.query<Comment[], { postId: number }>({
+      query: ({ postId }) => ({
+        url: `/posts/${postId}/comments`,
+      }),
     }),
   }),
 });
 
-export const { useLazyGetPostsQuery } = postsApi;
+export const {
+  useLazyGetPostsQuery,
+  useGetPostCommentsQuery,
+  useGetSinglePostQuery,
+} = postsApi;

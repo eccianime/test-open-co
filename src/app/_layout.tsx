@@ -25,7 +25,7 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaView className='flex-1 bg-background'>
+    <SafeAreaView className='flex-1'>
       <Provider store={store}>
         <Slot screenOptions={{ headerShown: false }} />
       </Provider>

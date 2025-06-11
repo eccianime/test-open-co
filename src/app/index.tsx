@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Image, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
+import Error from '../components/Error';
+import Loader from '../components/Loader';
 import PostList from '../components/PostList';
 import { useLazyGetPostsQuery } from '../redux/api/postsApi';
 import { Post } from '../types';
@@ -20,22 +22,9 @@ export default function Index() {
     setPosts((prev) => [...prev, ...result]);
   };
 
-  if (isLoading)
-    return (
-      <View className='flex-1 items-center justify-center'>
-        <Text className='text-2xl font-Poppins_600SemiBold'>Loading...</Text>
-        <ActivityIndicator />
-      </View>
-    );
+  if (isLoading) return <Loader />;
 
-  if (isError)
-    return (
-      <View className='flex-1 items-center justify-center'>
-        <Text className='text-2xl font-Poppins_600SemiBold'>
-          There was an error
-        </Text>
-      </View>
-    );
+  if (isError) return <Error />;
 
   return (
     <View className='flex-1 '>
@@ -44,7 +33,7 @@ export default function Index() {
           source={require('../assets/images/icon.png')}
           className='w-10 h-10 absolute top-0 left-6 rounded-lg'
         />
-        <Text className='text-2xl text-white font-poppins_bold  text-center'>
+        <Text className='text-2xl text-primary font-poppins_bold  text-center'>
           Posts List
         </Text>
       </View>
