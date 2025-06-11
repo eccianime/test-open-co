@@ -5,7 +5,12 @@ import { PostListItemProps } from '../types';
 export default function PostListItem({ post, isComplete }: PostListItemProps) {
   const handlePress = () => {
     if (isComplete) return;
-    router.push(`/post/${post.id}`);
+    router.push({
+      pathname: '/post-details',
+      params: {
+        id: post.id,
+      },
+    });
   };
 
   return (

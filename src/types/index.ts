@@ -1,3 +1,5 @@
+import { FlatListProps } from 'react-native';
+
 export interface Post {
   userId: number;
   id: number;
@@ -5,9 +7,9 @@ export interface Post {
   body: string;
 }
 
-export type PostListProps = {
+export type PostListProps = Omit<FlatListProps<Post>, 'data' | 'renderItem'> & {
   posts: Post[];
-  changePage: () => void;
+  changePage?: () => void;
 };
 
 export type PostListItemProps = {
