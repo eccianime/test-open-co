@@ -1,4 +1,5 @@
 import { Stack } from 'expo-router';
+import { Provider } from 'react-redux';
 import '../../global.css';
 
 import {
@@ -7,6 +8,7 @@ import {
   Poppins_600SemiBold,
 } from '@expo-google-fonts/poppins';
 import { useFonts } from 'expo-font';
+import { store } from '../redux/store';
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -19,5 +21,9 @@ export default function RootLayout() {
     return null;
   }
 
-  return <Stack />;
+  return (
+    <Provider store={store}>
+      <Stack />
+    </Provider>
+  );
 }
