@@ -12,10 +12,12 @@ export default function RootLayout() {
   return (
     <View className='flex-1' style={{ paddingTop: top }}>
       <Provider store={store}>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name='index' />
-          <Stack.Screen name='post' />
-        </Stack>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            contentStyle: { backgroundColor: 'white' },
+          }}
+        />
       </Provider>
     </View>
   );

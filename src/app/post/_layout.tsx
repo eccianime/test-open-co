@@ -33,10 +33,6 @@ export default function TabLayout() {
           );
         },
       }}
-    >
-      <Tabs.Screen name='index' />
-      <Tabs.Screen name='search' options={{ title: 'Search' }} />
-      <Tabs.Screen name='[id]' options={{ href: null }} />
-    </Tabs>
+    />
   );
 }
