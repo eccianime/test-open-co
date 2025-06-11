@@ -1,3 +1,5 @@
+const colors = require('./src/constants/colors.ts');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // NOTE: Update this to include the paths to all of your component files.
@@ -11,11 +13,7 @@ module.exports = {
         poppins_semibold: ['Poppins_600SemiBold'],
         poppins_bold: ['Poppins_700Bold'],
       },
-      colors: {
-        primary: '#036c39',
-        secondary: '#2fc94e',
-        background: '#74b882',
-      },
+      colors,
     },
   },
   plugins: [],
