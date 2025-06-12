@@ -1,11 +1,8 @@
-import Header from '@/src/components/Header';
-import React, { useEffect, useState } from 'react';
+import { Error, Header, Loader, PostList } from '@/src/components';
+import { useLazyGetPostsQuery } from '@/src/redux/api/postsApi';
+import { Post } from '@/src/types';
+import { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import Error from '../../components/Error';
-import Loader from '../../components/Loader';
-import PostList from '../../components/PostList';
-import { useLazyGetPostsQuery } from '../../redux/api/postsApi';
-import { Post } from '../../types';
 
 const LIMIT = 10;
 

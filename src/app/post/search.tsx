@@ -1,7 +1,4 @@
-import EmptyList from '@/src/components/EmptyList';
-import Header from '@/src/components/Header';
-import Loader from '@/src/components/Loader';
-import PostList from '@/src/components/PostList';
+import { EmptyList, Header, Loader, PostList } from '@/src/components';
 import useDebounce from '@/src/hook/useDebounce';
 import { useLazyGetPostsQuery } from '@/src/redux/api/postsApi';
 import { Post } from '@/src/types';

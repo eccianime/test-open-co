@@ -1,14 +1,16 @@
-import CommentListItem from '@/src/components/CommentListItem';
-import Error from '@/src/components/Error';
-import Loader from '@/src/components/Loader';
-import PostListItem from '@/src/components/PostListItem';
+import {
+  CommentListItem,
+  Error,
+  Header,
+  Loader,
+  PostListItem,
+} from '@/src/components';
 import {
   useGetPostCommentsQuery,
   useGetSinglePostQuery,
 } from '@/src/redux/api/postsApi';
 import { router, useLocalSearchParams } from 'expo-router';
 import { FlatList, View } from 'react-native';
-import Header from '../components/Header';
 
 export default function PostDetails() {
   const { id } = useLocalSearchParams();
