@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "test-open-co",
+    "slug": "test-open-co",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/images/icon.png",
+    "scheme": "testopenco",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "splash": {
+        "image": "./src/assets/images/splash.png",
+        "resizeMode": "cover",
+        "backgroundColor": "#3d6c3f"
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/images/adaptive-icon.png",
+        "backgroundColor": "#3d6c3f"
+      },
+      "package": "com.testopenco.app",
+      "edgeToEdgeEnabled": true,
+      "splash": {
+        "image": "./src/assets/images/splash.png",
+        "resizeMode": "cover",
+        "backgroundColor": "#3d6c3f"
+      }
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./src/assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
