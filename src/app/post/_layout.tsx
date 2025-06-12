@@ -16,7 +16,11 @@ export default function TabLayout() {
         },
         tabBarLabel: ({ focused, children }) => {
           return (
-            <View className='items-center justify-center pt-2'>
+            <View
+              className={`items-center justify-center pt-2 ${
+                focused ? 'opacity-100' : 'opacity-80'
+              }`}
+            >
               <Ionicons
                 name={children === 'index' ? 'list' : 'search'}
                 size={24}

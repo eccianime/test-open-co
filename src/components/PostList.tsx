@@ -11,7 +11,9 @@ export default function PostList({
     <FlatList
       data={posts}
       keyExtractor={(item) => item.id.toString()}
-      renderItem={({ item }) => <PostListItem post={item} />}
+      renderItem={({ item, index }) => (
+        <PostListItem post={item} index={index} />
+      )}
       onEndReached={() => changePage && changePage()}
       onEndReachedThreshold={changePage ? 0.9 : undefined}
       {...props}

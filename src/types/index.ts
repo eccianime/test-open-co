@@ -1,3 +1,4 @@
+import { SimpleLineIcons } from '@expo/vector-icons';
 import { FlatListProps } from 'react-native';
 
 export interface Post {
@@ -15,6 +16,7 @@ export type PostListProps = Omit<FlatListProps<Post>, 'data' | 'renderItem'> & {
 export type PostListItemProps = {
   post: Post;
   isComplete?: boolean;
+  index: number;
 };
 
 export type Comment = {
@@ -27,6 +29,7 @@ export type Comment = {
 
 export type CommentListItemProps = {
   comment: Comment;
+  index: number;
 };
 
 export type ErrorProps = {
@@ -36,4 +39,10 @@ export type ErrorProps = {
 
 export type HeaderProps = {
   text: string;
+  hasBackButton?: boolean;
+};
+
+export type EmptyListProps = {
+  text: string;
+  icon: keyof typeof SimpleLineIcons.glyphMap;
 };

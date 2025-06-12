@@ -1,9 +1,18 @@
 import { Text, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 import { CommentListItemProps } from '../types';
 
-export default function CommentListItem({ comment }: CommentListItemProps) {
+export default function CommentListItem({
+  comment,
+  index,
+}: CommentListItemProps) {
   return (
-    <View className='mx-6 mb-2 bg-green-200 rounded-lg p-4 flex-row gap-3'>
+    <Animated.View
+      entering={FadeInDown.delay(index * 70)
+        .springify()
+        .damping(14)}
+      className='mx-6 mb-2 bg-green-200 p-4 rounded-[20] flex-row gap-3'
+    >
       <View className='h-10 w-10 rounded-full items-center justify-center bg-default-secondary'>
         <Text className='text-2xl font-light text-white'>
           {comment.email.substring(0, 1)}
@@ -16,10 +25,10 @@ export default function CommentListItem({ comment }: CommentListItemProps) {
         <Text className='text-default-primary font-poppins_light'>
           {comment.body}
         </Text>
-        <Text className='text-default-primary font-semibold text-right'>
+        <Text className='text-default-primary font-semibold text-right pt-3'>
           {comment.email}
         </Text>
       </View>
-    </View>
+    </Animated.View>
   );
 }

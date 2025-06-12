@@ -6,9 +6,9 @@ import {
   useGetPostCommentsQuery,
   useGetSinglePostQuery,
 } from '@/src/redux/api/postsApi';
-import { Ionicons } from '@expo/vector-icons';
 import { router, useLocalSearchParams } from 'expo-router';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { FlatList, View } from 'react-native';
+import Header from '../components/Header';
 
 export default function PostDetails() {
   const { id } = useLocalSearchParams();
@@ -36,24 +36,17 @@ export default function PostDetails() {
   if (!post || !comments) return <Loader />;
 
   return (
-    <View className='flex-1 '>
-      <View className='items-center mb-3'>
-        <TouchableOpacity
-          onPress={() => router.back()}
-          className='absolute left-6 top-0'
-        >
-          <Ionicons name='arrow-back' size={30} color='#036c39' />
-        </TouchableOpacity>
-        <Text className='text-2xl text-default-primary font-poppins_bold  text-center'>
-          Post Details
-        </Text>
-      </View>
-
+    <View className='flex-1 pb-4'>
+      <Header text='Post Details' hasBackButton />
       <FlatList
-        ListHeaderComponent={() => <PostListItem post={post} isComplete />}
-        contentContainerClassName='mt-4'
+        ListHeaderComponent={() => (
+          <PostListItem post={post} isComplete index={0} />
+        )}
+        // contentContainerClassName='mt-4'
         data={comments}
-        renderItem={({ item }) => <CommentListItem comment={item} />}
+        renderItem={({ item, index }) => (
+          <CommentListItem comment={item} index={index} />
+        )}
       />
     </View>
   );

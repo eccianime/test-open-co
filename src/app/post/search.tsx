@@ -56,11 +56,16 @@ export default function Search() {
         value={searchText}
         onChangeText={setSearchText}
         placeholder='Search for a post'
-        className='border border-default-primary rounded-lg p-4 mx-6 font-poppins_medium mb-2'
+        className='border border-default-primary rounded-lg p-4 mx-6 font-poppins_medium mb-6'
       />
+
       <PostList
         posts={debouncedSearchText.length > 2 ? filteredPosts : []}
-        contentContainerClassName='flex-1'
+        contentContainerClassName={`${
+          !filteredPosts.length || debouncedSearchText.length < 3
+            ? 'flex-1'
+            : ''
+        }`}
         ListEmptyComponent={
           <View className='flex-1 items-center justify-center mx-6'>
             {debouncedSearchText.length > 2 ? (

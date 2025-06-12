@@ -17,7 +17,7 @@ export default function Error({ onPressRetry, text }: ErrorProps) {
           size={30}
           color='white'
         />
-        <Text className='text-white text-3xl font-Poppins_600SemiBold'>
+        <Text className='text-white text-3xl font-poppins_semibold'>
           {text}
         </Text>
       </TouchableOpacity>
