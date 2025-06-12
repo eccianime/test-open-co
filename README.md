@@ -1,50 +1,89 @@
-# Welcome to your Expo app 👋
+# Projeto Test Open Co
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Este é um aplicativo de teste criado para um processo de contratação com a Open Co
 
-## Get started
+## Sumário
 
-1. Install dependencies
+- [i. Instruções para Executar o Projeto](#i-instruções-para-executar-o-projeto)
+- [ii. Decisões Arquitetônicas](#ii-decisões-arquitetônicas)
+- [iii. Bibliotecas Utilizadas e Justificativas](#iii-bibliotecas-utilizadas-e-justificativas)
+- [iv. Dificuldades Encontradas e Como Foram Resolvidas](#iv-dificuldades-encontradas-e-como-foram-resolvidas)
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+### i. Instruções para Executar o Projeto
 
-   ```bash
-   npx expo start
-   ```
+Para configurar e executar este projeto localmente, siga estas etapas:
 
-In the output, you'll find options to open the app in a
+1.  **Clonar o repositório:**
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+    ```bash
+    git clone https://github.com/eccianime/test-open-co
+    cd test-open-co
+    ```
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+2.  **Instalar Dependências:**
+    Use npm ou yarn para instalar as dependências do projeto.
 
-## Get a fresh project
+    ```bash
+    npm install
+    # ou
+    yarn install
+    ```
 
-When you're ready, run:
+3.  **Iniciar o Servidor de Desenvolvimento:**
+    Você pode iniciar o servidor de desenvolvimento Expo, que fornecerá opções para executar em várias plataformas.
 
-```bash
-npm run reset-project
-```
+    ```bash
+    npm start
+    # ou
+    yarn start
+    ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+    Este comando abrirá o Expo Dev Tools no seu navegador, a partir do qual você pode escolher executar o aplicativo em:
 
-## Learn more
+    - **Android:** `npm run android` ou `yarn android`
+    - **iOS:** `npm run ios` ou `yarn ios`
+    - **Web:** `npm run web` ou `yarn web`
 
-To learn more about developing your project with Expo, look at the following resources:
+---
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### ii. Decisões Arquitetônicas
 
-## Join the community
+O projeto adota uma arquitetura moderna baseada em componentes para construir um aplicativo móvel robusto e escalável. As principais decisões arquitetônicas incluem:
 
-Join our community of developers creating universal apps.
+- **Expo Router para Roteamento:** Utiliza o Expo Router para uma abordagem de roteamento baseada em sistema de arquivos, simplificando a navegação. Isso fornece uma maneira clara e intuitiva de gerenciar telas e fluxos do aplicativo.
+- **NativeWind (Tailwind CSS) para Estilização:** Implementa o NativeWind para trazer a abordagem utility-first do Tailwind CSS para o React Native. Isso simplifica a estilização, promove a consistência e acelera significativamente o desenvolvimento da interface do usuário, aplicando estilos diretamente via nomes de classe de componentes. Fontes personalizadas (Poppins) e cores são integradas via `tailwind.config.js`.
+- **Redux Toolkit para Gerenciamento de Estado:** Utiliza o Redux Toolkit para um gerenciamento de estado eficiente e previsível. Isso ajuda a centralizar o estado do aplicativo, tornando mais fácil gerenciar fluxos de dados complexos e garantindo uma única fonte de verdade para os dados do aplicativo. A estrutura do projeto inclui um diretório `src/redux` para arquivos relacionados ao Redux.
+- **TypeScript para Segurança de Tipo:** Todo o código é escrito em TypeScript, fornecendo tipagem estática para capturar erros no início do ciclo de desenvolvimento, melhorar a legibilidade do código e aprimorar a experiência do desenvolvedor por meio de melhor autocompletar e recursos de refatoração.
+- **Estrutura de Projeto Modular:** O diretório `src` é organizado em módulos lógicos como `app`, `components`, `constants`, `hook`, `redux`, `types` e `assets`, promovendo organização, reutilização e manutenibilidade do código.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+### iii. Bibliotecas Utilizadas e Justificativas
+
+Aqui está uma lista das principais bibliotecas usadas neste projeto e suas justificativas:
+
+- **`expo` (~53.0.11):** O framework principal para construir aplicativos React universais. Ele fornece um conjunto abrangente de ferramentas e serviços para desenvolver, construir e implantar aplicativos React Native.
+- **`expo-router` (~5.1.0):** Um roteador baseado em sistema de arquivos para Expo e React Native. Ele simplifica a configuração e o gerenciamento da navegação, permitindo o roteamento declarativo baseado em caminhos de arquivo.
+- **`react` (`19.0.0`) & `react-native` (`0.79.3`):** As bibliotecas fundamentais para a construção de interfaces de usuário. React fornece o paradigma declarativo, enquanto React Native renderiza componentes nativos.
+- **`nativewind` (`^4.1.23`) & `tailwindcss` (`^3.4.17`):** NativeWind integra o Tailwind CSS no React Native, permitindo a estilização utility-first para rápido desenvolvimento de UI e design consistente em todo o aplicativo.
+- **`@reduxjs/toolkit` (`^2.8.2`) & `react-redux` (`^9.2.0`):** Redux Toolkit simplifica o desenvolvimento Redux, fornecendo utilitários opinativos, enquanto React Redux fornece ligações para conectar componentes React à store Redux para gerenciamento eficiente de estado.
+- **`@expo-google-fonts/poppins` (`^0.4.0`):** Integra as Google Fonts (especificamente Poppins) no projeto Expo, fornecendo tipografia personalizada para uma estética de UI aprimorada.
+- **`@expo/vector-icons` (`^14.1.0`):** Um conjunto abrangente de ícones vetoriais para projetos React Native e Expo, simplificando a inclusão de ícones na UI.
+- **`@react-native-async-storage/async-storage` (`2.1.2`):** Fornece um sistema de armazenamento de chave-valor assíncrono, persistente e não criptografado para aplicativos React Native.
+- **`expo-font` (`~13.3.1`):** Gerencia o carregamento e uso de fontes em aplicativos Expo, essencial para tipografia personalizada.
+- **`react-native-reanimated` (`~3.17.4`):** Uma poderosa biblioteca de animação para React Native, permitindo animações suaves e performáticas com uma API declarativa.
+- **`react-native-safe-area-context` (`5.4.0`):** Fornece um hook e componente para interagir com as insets de área segura, garantindo que os elementos da UI não sejam obscurecidos por entalhes do dispositivo ou barras do sistema.
+
+---
+
+### iv. Dificuldades Encontradas e Como Foram Resolvidas
+
+- **Lidando com buscas performáticas:**
+
+  - **Resolução:** Resolvido aplicando a função debounce ao campo de busca.
+
+- **Rolagem Infinita em uma lista que não possui uma resposta de paginação:**
+
+  - **Resolução:** Aplicando técnicas de limite e início
