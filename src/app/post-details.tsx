@@ -5,37 +5,22 @@ import {
   Loader,
   PostListItem,
 } from '@/src/components';
-import {
-  useGetPostCommentsQuery,
-  useGetSinglePostQuery,
-} from '@/src/redux/api/postsApi';
 import { router, useLocalSearchParams } from 'expo-router';
 import { FlatList, View } from 'react-native';
+import usePostDetailsHook from '../hook/usePostDetailsHook';
 
 export default function PostDetails() {
   const { id } = useLocalSearchParams();
 
-  const {
-    data: post,
-    isLoading: isPostLoading,
-    isError: isPostError,
-  } = useGetSinglePostQuery({ postId: Number(id) });
-  const {
-    data: comments,
-    isLoading: isCommentsLoading,
-    isError: isCommentsError,
-  } = useGetPostCommentsQuery({ postId: Number(id) });
+  const { post, comments, isLoading, isError } = usePostDetailsHook(
+    id as string
+  );
 
-  const handleRetry = () => {
-    router.back();
-  };
+  const handleRetry = () => router.back();
 
-  if (isPostLoading || isCommentsLoading) return <Loader />;
+  if (isLoading || !post || !comments) return <Loader />;
 
-  if (isPostError || isCommentsError)
-    return <Error onPressRetry={handleRetry} text='Go Back' />;
-
-  if (!post || !comments) return <Loader />;
+  if (isError) return <Error onPressRetry={handleRetry} text='Go Back' />;
 
   return (
     <View className='flex-1 pb-4'>
