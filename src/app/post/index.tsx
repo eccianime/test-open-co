@@ -1,4 +1,4 @@
-import { Error, Header, Loader, PostList } from '@/src/components';
+import { ErrorView, Header, Loader, PostList } from '@/src/components';
 import usePostList from '@/src/hook/usePostList';
 import { View } from 'react-native';
 
@@ -7,7 +7,7 @@ export default function PostsList() {
 
   if (isLoading) return <Loader />;
 
-  if (isError) return <Error onPressRetry={handleRetry} text='Retry' />;
+  if (isError) return <ErrorView onPressRetry={handleRetry} text='Retry' />;
 
   return (
     <View className='flex-1'>

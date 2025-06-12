@@ -6,15 +6,15 @@ import { Text, View } from 'react-native';
 export default function TabLayout() {
   return (
     <Tabs
-      screenOptions={{
+      screenOptions={({ route }) => ({
         headerShown: false,
         tabBarIconStyle: {
-          height: 0,
+          display: 'none',
         },
         sceneStyle: {
           backgroundColor: 'white',
         },
-        tabBarLabel: ({ focused, children }) => {
+        tabBarLabel: ({ focused }) => {
           return (
             <View
               className={`items-center justify-center pt-2 ${
@@ -22,21 +22,21 @@ export default function TabLayout() {
               }`}
             >
               <Ionicons
-                name={children === 'index' ? 'list' : 'search'}
+                name={route.name === 'index' ? 'list' : 'search'}
                 size={24}
                 color={focused ? colors.primary : colors.limeish}
               />
               <Text
                 className={`${
-                  focused ? 'text-default-primary' : 'text-default-limeish'
+                  focused ? 'text-primary' : 'text-limeish'
                 } font-poppins_semibold`}
               >
-                {children === 'index' ? 'Posts' : 'Search'}
+                {route.name === 'index' ? 'Posts' : 'Search'}
               </Text>
             </View>
           );
         },
-      }}
+      })}
     />
   );
 }

@@ -1,13 +1,13 @@
 import {
   CommentListItem,
-  Error,
+  ErrorView,
   Header,
   Loader,
   PostListItem,
 } from '@/src/components';
+import usePostDetailsHook from '@/src/hook/usePostDetailsHook';
 import { router, useLocalSearchParams } from 'expo-router';
 import { FlatList, View } from 'react-native';
-import usePostDetailsHook from '../hook/usePostDetailsHook';
 
 export default function PostDetails() {
   const { id } = useLocalSearchParams();
@@ -20,12 +20,13 @@ export default function PostDetails() {
 
   if (isLoading || !post || !comments) return <Loader />;
 
-  if (isError) return <Error onPressRetry={handleRetry} text='Go Back' />;
+  if (isError) return <ErrorView onPressRetry={handleRetry} text='Go Back' />;
 
   return (
     <View className='flex-1 pb-4'>
       <Header text='Post Details' hasBackButton />
       <FlatList
+        keyExtractor={(item) => item.id.toString()}
         ListHeaderComponent={() => (
           <PostListItem post={post} isComplete index={0} />
         )}

@@ -2,9 +2,9 @@ import { Stack } from 'expo-router';
 import { Provider } from 'react-redux';
 import '../../global.css';
 
+import { store } from '@/src/redux/store';
 import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { store } from '../redux/store';
 
 export default function RootLayout() {
   const { top } = useSafeAreaInsets();

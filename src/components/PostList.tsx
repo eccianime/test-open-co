@@ -1,5 +1,5 @@
+import { PostListProps } from '@/src/types';
 import { FlatList } from 'react-native';
-import { PostListProps } from '../types';
 import PostListItem from './PostListItem';
 
 export default function PostList({
@@ -14,7 +14,7 @@ export default function PostList({
       renderItem={({ item, index }) => (
         <PostListItem post={item} index={index} />
       )}
-      onEndReached={() => changePage && changePage()}
+      onEndReached={() => changePage?.()}
       onEndReachedThreshold={changePage ? 0.9 : undefined}
       {...props}
     />

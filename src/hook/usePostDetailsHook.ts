@@ -4,16 +4,19 @@ import {
 } from '@/src/redux/api/postsApi';
 
 export default function usePostDetailsHook(id: string) {
+  const postId = Number(id);
+  const skip = Number.isNaN(postId);
+
   const {
     data: post,
     isLoading: isPostLoading,
     isError: isPostError,
-  } = useGetSinglePostQuery({ postId: Number(id) });
+  } = useGetSinglePostQuery({ postId }, { skip });
   const {
     data: comments,
     isLoading: isCommentsLoading,
     isError: isCommentsError,
-  } = useGetPostCommentsQuery({ postId: Number(id) });
+  } = useGetPostCommentsQuery({ postId }, { skip });
 
   return {
     post,

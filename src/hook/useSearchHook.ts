@@ -7,29 +7,32 @@ import { useEffect, useMemo, useState } from 'react';
 export default function useSearchHook() {
   const [searchText, setSearchText] = useState('');
   const [posts, setPosts] = useState<Post[]>([]);
+  const [isError, setIsError] = useState(false);
 
   const [getPosts, { isLoading }] = useLazyGetPostsQuery();
 
   const debouncedSearchText = useDebounce(searchText, 500);
 
-  useEffect(() => {
-    let posts: Post[] = [];
-
-    const fetchPosts = async () => {
+  const fetchPosts = async () => {
+    let cached: Post[] = [];
+    try {
       const postsString = await AsyncStorage.getItem('POSTS');
       if (postsString) {
-        posts = JSON.parse(postsString);
+        cached = JSON.parse(postsString);
       } else {
-        posts = await getPosts({
-          page: 0,
-          limit: 100,
-        }).unwrap();
-        await AsyncStorage.setItem('POSTS', JSON.stringify(posts));
+        cached = await getPosts({ page: 0, limit: 100 }).unwrap();
+        await AsyncStorage.setItem('POSTS', JSON.stringify(cached));
       }
-      setPosts(posts);
-    };
+      setPosts(cached);
+    } catch (error) {
+      console.log(error);
+      setIsError(true);
+    }
+  };
+
+  useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [getPosts]);
 
   const filteredPosts = useMemo(() => {
     if (!posts) return [];
@@ -43,6 +46,8 @@ export default function useSearchHook() {
   return {
     filteredPosts,
     isLoading,
+    isError,
+    setIsError,
     searchText,
     setSearchText,
     debouncedSearchText,

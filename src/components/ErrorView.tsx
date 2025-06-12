@@ -1,8 +1,8 @@
+import { ErrorProps } from '@/src/types';
 import { Ionicons } from '@expo/vector-icons';
 import { Text, TouchableOpacity, View } from 'react-native';
-import { ErrorProps } from '../types';
 
-export default function Error({ onPressRetry, text }: ErrorProps) {
+export default function ErrorView({ onPressRetry, text }: ErrorProps) {
   return (
     <View className='flex-1 items-center justify-center'>
       <Text className='text-2xl font-Poppins_600SemiBold'>
@@ -10,7 +10,7 @@ export default function Error({ onPressRetry, text }: ErrorProps) {
       </Text>
       <TouchableOpacity
         onPress={onPressRetry}
-        className='mt-4 bg-default-primary  rounded-lg items-center justify-center flex-row gap-3 p-4'
+        className='mt-4 bg-primary  rounded-lg items-center justify-center flex-row gap-3 p-4'
       >
         <Ionicons
           name={text === 'Retry' ? 'refresh' : 'arrow-back'}

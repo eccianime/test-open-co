@@ -1,10 +1,13 @@
+import { Comment, Post } from '@/src/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Comment, Post } from '../../types';
+
+const BASE_URL =
+  process.env.EXPO_PUBLIC_API ?? 'https://jsonplaceholder.typicode.com';
 
 export const postsApi = createApi({
   reducerPath: 'postsApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://jsonplaceholder.typicode.com',
+    baseUrl: BASE_URL,
   }),
   endpoints: (builder) => ({
     getPosts: builder.query<Post[], { page: number; limit: number }>({

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 
 const LIMIT = 10;
 
-export default function PostsList() {
+export default function usePostsList() {
   const [page, setPage] = useState(0);
   const [posts, setPosts] = useState<Post[]>([]);
   const [getPosts, { isLoading, isError }] = useLazyGetPostsQuery();
@@ -22,7 +22,6 @@ export default function PostsList() {
   const handleRetry = () => {
     setPosts([]);
     setPage(0);
-    loadMore();
   };
 
   return {

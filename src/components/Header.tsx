@@ -1,8 +1,8 @@
+import colors from '@/src/constants/colors';
+import { HeaderProps } from '@/src/types';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
-import colors from '../constants/colors';
-import { HeaderProps } from '../types';
 
 export default function Header({ text, hasBackButton }: HeaderProps) {
   return (
@@ -20,7 +20,7 @@ export default function Header({ text, hasBackButton }: HeaderProps) {
           className='w-10 h-10 absolute top-3 left-6 rounded-lg'
         />
       )}
-      <Text className='text-2xl text-default-primary font-poppins_bold  text-center'>
+      <Text className='text-2xl text-primary font-poppins_bold  text-center'>
         {text}
       </Text>
     </View>

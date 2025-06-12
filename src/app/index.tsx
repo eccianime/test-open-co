@@ -1,5 +1,6 @@
 import { router } from 'expo-router';
 
+import SplashImage from '@/src/assets/images/splash.png';
 import {
   Poppins_300Light,
   Poppins_500Medium,
@@ -20,16 +21,13 @@ export default function Splash() {
 
   useEffect(() => {
     if (fontsLoaded) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         router.replace('/post');
       }, 2000);
+
+      return () => clearTimeout(timer);
     }
   }, [fontsLoaded]);
 
-  return (
-    <Image
-      source={require('../assets/images/splash.png')}
-      className='w-full h-full'
-    />
-  );
+  return <Image source={SplashImage} className='w-full h-full' />;
 }

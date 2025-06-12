@@ -1,11 +1,20 @@
+import colors from '@/src/constants/colors';
+import { LoaderProps } from '@/src/types';
 import { ActivityIndicator, Text, View } from 'react-native';
-import colors from '../constants/colors';
 
-export default function Loader() {
+export default function Loader({
+  message = 'Loading...',
+  size = 'large',
+  color = colors.primary,
+}: LoaderProps) {
   return (
     <View className='flex-1 items-center justify-center'>
-      <Text className='text-2xl font-poppins_semibold'>Loading...</Text>
-      <ActivityIndicator size='large' color={colors.primary} />
+      <Text className='text-2xl font-poppins_semibold'>{message}</Text>
+      <ActivityIndicator
+        size={size}
+        color={color}
+        accessibilityLabel='Loading indicator'
+      />
     </View>
   );
 }

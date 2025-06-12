@@ -8,7 +8,10 @@ export interface Post {
   body: string;
 }
 
-export type PostListProps = Omit<FlatListProps<Post>, 'data' | 'renderItem'> & {
+export type PostListProps = Omit<
+  FlatListProps<Post>,
+  'data' | 'renderItem' | 'keyExtractor'
+> & {
   posts: Post[];
   changePage?: () => void;
 };
@@ -45,4 +48,10 @@ export type HeaderProps = {
 export type EmptyListProps = {
   text: string;
   icon: keyof typeof SimpleLineIcons.glyphMap;
+};
+
+export type LoaderProps = {
+  message?: string;
+  size?: 'small' | 'large';
+  color?: string;
 };
