@@ -8,6 +8,10 @@ export default function TabLayout() {
     <Tabs
       screenOptions={({ route }) => ({
         headerShown: false,
+        tabBarStyle: {
+          height: 90,
+          paddingTop: 5,
+        },
         tabBarIconStyle: {
           display: 'none',
         },
@@ -17,18 +21,18 @@ export default function TabLayout() {
         tabBarLabel: ({ focused }) => {
           return (
             <View
-              className={`items-center justify-center pt-2 ${
-                focused ? 'opacity-100' : 'opacity-80'
+              className={`items-center flex-row gap-2 justify-center pt-2 ${
+                focused ? 'bg-primary rounded-full px-4 py-2' : 'opacity-50'
               }`}
             >
               <Ionicons
                 name={route.name === 'index' ? 'list' : 'search'}
                 size={24}
-                color={focused ? colors.primary : colors.limeish}
+                color={focused ? 'white' : colors.primary}
               />
               <Text
                 className={`${
-                  focused ? 'text-primary' : 'text-limeish'
+                  focused ? 'text-white' : 'text-primary'
                 } font-poppins_semibold`}
               >
                 {route.name === 'index' ? 'Posts' : 'Search'}

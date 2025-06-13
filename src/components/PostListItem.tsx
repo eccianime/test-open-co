@@ -1,6 +1,6 @@
 import { PostListItemProps } from '@/src/types';
 import { router } from 'expo-router';
-import { Text, TouchableOpacity } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 
 const AnimatedTouchableOpacity =
@@ -27,16 +27,22 @@ export default function PostListItem({
         .springify()
         .damping(14)}
       activeOpacity={isComplete ? 1 : 0.8}
-      className='bg-primary py-4 px-6 rounded-[20] mx-6 mb-3'
+      className='bg-primary  rounded-[20] mx-6 mb-3 overflow-hidden'
       onPress={handlePress}
       disabled={isComplete}
     >
-      <Text className='text-white font-poppins_semibold mb-3'>
-        {post.id} - {post.title}
-      </Text>
-      <Text className='text-white font-poppins_light'>
-        {isComplete ? post.body : `${post.body.slice(0, 100)}...`}
-      </Text>
+      <Image
+        source={{ uri: `https://picsum.photos/seed/${post.id}/500/500` }}
+        className='w-full h-40'
+      />
+      <View className='py-4 px-6'>
+        <Text className='text-white font-poppins_semibold mb-3'>
+          {post.id} - {post.title}
+        </Text>
+        <Text className='text-white font-poppins_light'>
+          {isComplete ? post.body : `${post.body.slice(0, 100)}...`}
+        </Text>
+      </View>
     </AnimatedTouchableOpacity>
   );
 }

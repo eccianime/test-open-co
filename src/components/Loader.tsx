@@ -9,7 +9,9 @@ export default function Loader({
 }: LoaderProps) {
   return (
     <View className='flex-1 items-center justify-center'>
-      <Text className='text-2xl font-poppins_semibold'>{message}</Text>
+      <Text className='text-2xl text-primary font-poppins_semibold'>
+        {message}
+      </Text>
       <ActivityIndicator
         size={size}
         color={color}
